@@ -252,13 +252,14 @@
 						return;
 					}
 					var text = $('#messageInput').val();
-					myMessageRef.push({name: name, text: text});
+					var time = Date().getUTCHours();
+					myMessageRef.push({name: name, text: text, time: time});
 					$('#messageInput').val('');
 				}
 			});
 			myMessageRef.on('child_added', function(snapshot) {
 				var message = snapshot.val();
-				send(message.name, message.text);
+				send(message.name, message.text, time: time);
 			});
 			function send(nick, text) {
 				var tags = text.getTags();
@@ -282,7 +283,7 @@
 							text = text.replace(RegExp('@' + tag, 'gi'),'<span class="tag">@' + name + '</span>');
 					});
 				}
-				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html('<span>' + text + '</span>').prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
+				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html('<span>' + text + '</span><div class="timestamp">' + time + '</div>').prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
 			};
 		</script>
