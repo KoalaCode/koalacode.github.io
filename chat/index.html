@@ -252,13 +252,13 @@
 						return;
 					}
 					var text = $('#messageInput').val();
-					var time = Date().getUTCHours();
+					var time = new Date().getUTCHours();
 					myMessageRef.push({name: name, text: text, time});
 					$('#messageInput').val('');
 				}
 			});
 			myMessageRef.on('child_added', function(snapshot) {
-				var time = Date().getUTCHours();
+				var time = new Date().getUTCHours();
 				var message = snapshot.val();
 				send(message.name, message.text, time);
 			});
