@@ -47,48 +47,6 @@
 			<source src="./ping.mp3">
 		</audio>
 		<script>
-		var authClient = new FirebaseSimpleLogin(ref, function (error, user) {
-			if (error) {
-				alert(error);
-				return;
-			}
-			if (user) {
-				// User is already logged in.
-				console.log(user);
-				console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
-			ref.child("users").on("value", function(snapshot) {
-				var values = snapshot.val();
-				console.log(values);
-				if (values.hasOwnProperty(user.id))
-					name = values[user.id].name;
-				$('#login').fadeOut(0);
-				$('#lro').fadeOut(0);
-				$('#log').fadeOut(0);
-				$('#reg').fadeOut(0);
-				$('#lout').fadeIn(0);
-				$('#name').fadeIn(0);
-				$('#name').text('Logged in: ' + name);
-				selectTags();
-					myUser = user;
-					// doLogin(user);
-					console.log('logged in')
-					$("#data").attr('disabled', false);
-					$("#opener-logout").attr('disabled', false);
-					$("#opener-login").attr('disabled', true);
-			}, function (errorObject) {
-				console.log("!! The read failed: " + errorObject.code);
-			});
-			} else {
-				// User is logged out.
-				console.log('logged out');
-				$("#data").attr('disabled', true);
-				$("#opener-logout").attr('disabled', true);
-				$("#opener-login").attr('disabled', false);
-				// ("#dialog-form").dialog("open");
-			}
-		});
-		</script>
-		<script>
 		if (typeof String.prototype.getTags != 'function')
 				String.prototype.getTags = function () {
 					var tgs = this.match(/@[a-zA-Z0-9]+/g);
@@ -334,7 +292,7 @@
 							text = text.replace(RegExp('@' + tag, 'gi'),'<span class="tag">@' + name + '</span>');
 					});
 				}
-				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html('<span>' + text + '</span>' 
+				$('<div'+ setInterval(function(){(nick==name ? ' class="me"' : ''},50))+'/>').html('<span>' + text + '</span>' 
 						+ (typeof time === 'string' ? '<div class="timestamp">' + time + '</div>' : '') )
 					.prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
