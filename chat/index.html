@@ -59,7 +59,8 @@
 			$('.messages > div > span').each(function() {
 				var text = $(this).html(),
 					re = /https?:\/\/(www\.)?[^\s]+\.[^\s]+\/[^\s]+\.(?:png|jpg|jpeg|gif|tiff)/gi,
-					r,index,found;
+					r,index,found,
+					tags = text.getTags();
 				while ( (r = re.exec(text)) ) {
 					index = r.index, found = r[0];
 					text = text.substring(0, index)
@@ -177,6 +178,7 @@
 				$('#lout').fadeIn(0);
 				$('#name').fadeIn(0);
 				$('#name').text('Logged in: ' + name);
+				selectTags();
 					myUser = user;
 					// doLogin(user);
 					console.log('logged in')
