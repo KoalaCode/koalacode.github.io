@@ -54,7 +54,6 @@
 					return tgs;
 				}
 		var name = '';
-
 		function selectTags() {
 			$('.messages > div > span').each(function() {
 				var text = $(this).html(),
@@ -77,10 +76,8 @@
 				$(this).html(text);
 			});
 		}
-
 		ref = new Firebase('https://nexdon.firebaseio.com/');
 		myUser = -1;
-
 		$('#regbtn').click(function(){
 			var email = $('#register-email').val();
 			var password = $('#register-password').val();
@@ -116,7 +113,6 @@
 					$('#lout').fadeIn(0);
 					$('#name').fadeIn(0);
 					$('#name').html('Logged in: ' + name);
-
 					selectTags();
 				}
 			});
@@ -149,14 +145,12 @@
 			$('#lro').fadeOut(0);
 			$('#login').fadeOut(0);
 		});
-
 		function doLogin(email, password) {
 			authClient.login('password', {
 				email: email,
 				password: password
 			});
 		};
-
 		var authClient = new FirebaseSimpleLogin(ref, function (error, user) {
 			if (error) {
 				alert(error);
@@ -197,9 +191,6 @@
 				// ("#dialog-form").dialog("open");
 			}
 		});
-
-
-
 		$('#data').keypress(function (e) {
 			if (e.keyCode == 13) {
 				var data = $('#data').val();
@@ -292,7 +283,7 @@
 							text = text.replace(RegExp('@' + tag, 'gi'),'<span class="tag">@' + name + '</span>');
 					});
 				}
-				$('<div'+nick==name ? ' class="me"' : '')+'/>').html('<span>' + text + '</span>' 
+				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html('<span>' + text + '</span>' 
 						+ (typeof time === 'string' ? '<div class="timestamp">' + time + '</div>' : '') )
 					.prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
