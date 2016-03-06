@@ -74,7 +74,7 @@
 					ref.child("users").child(authData.uid).set({
 						name: username
 					});
-					var getname = myMessageRef.on('child_added', function(snapshot) {
+					var getname = ref.on('child_added', function(snapshot) {
 							var message = snapshot.val();
 							send(message.name, message.text);
 					});
@@ -233,7 +233,6 @@
 				send(message.name, message.text);
 			});
 			function send(nick, text) {
-				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html(text).prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				var tags = text.getTags();
 				if (typeof text != 'undefined'
 						&& tags != null
@@ -255,6 +254,7 @@
 							text = text.replace(RegExp('@' + tag, 'gi'),'<span class="tag">@' + name + '</span>');
 					});
 				}
+				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html(text).prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
 			};
 		</script>
