@@ -246,6 +246,9 @@
 			var myMessageRef = new Firebase('https://nexdon.firebaseio.com/messages');
 			$('#messageInput').keypress(function (e) {
 				if (e.keyCode == 13) {
+					var text = $('#messageInput').val(),
+						d = new Date(),
+						time = d.getUTCHours() + ':' + d.getUTCMinutes();
 					if (typeof name === 'undefined'
 							|| /^\s*$/.test(name)) {
 						send('', 'ERROR: You are not logged in!');
@@ -254,9 +257,6 @@
 					else if (text == 0) {
 						return;
 					}
-					var text = $('#messageInput').val(),
-						d = new Date(),
-						time = d.getUTCHours() + ':' + d.getUTCMinutes();
 					myMessageRef.push({name: name, text: text, time: time});
 					$('#messageInput').val('');
 				}
