@@ -276,7 +276,7 @@
 						&& tags != null
 						&& tags.indexOf(name.toLowerCase()) > -1)
 					pingSound.play();
-				text = text.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+				text = text.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/&/g,'&amp;');
 				var re = /https?:\/\/(www\.)?[^\s]+\.[^\s]+\/[^\s]+\.(?:png|jpg|jpeg|gif|tiff)/gi,
 					r,index,found;
 				while ( (r = re.exec(text)) ) {
