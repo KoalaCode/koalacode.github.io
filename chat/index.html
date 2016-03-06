@@ -259,7 +259,7 @@
 			});
 			myMessageRef.on('child_added', function(snapshot) {
 				var message = snapshot.val();
-				send(message.name, message.text, time: time);
+				send(message.name, message.text, time);
 			});
 			function send(nick, text) {
 				var tags = text.getTags();
