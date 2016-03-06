@@ -37,9 +37,19 @@ header .title {
 	color: #525963;
 	padding: 2px 10px 2px;
 	border-top: 1px solid #ddd;
+	position: absolute;
 }
 .messages > div.me {
 	background-color: #E4E8F0;
+}
+.messages > div .timestamp {
+	background-color: #F5F5F5;
+	color: #818DA2;
+	padding: 5px 10px;
+	font-size: 10px;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 .tag {
 	background-color: #EBF5AA;
