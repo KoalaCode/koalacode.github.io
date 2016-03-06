@@ -233,6 +233,7 @@
 				send(message.name, message.text);
 			});
 			function send(nick, text) {
+				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html(text).prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				var tags = text.getTags();
 				if (typeof text != 'undefined'
 						&& tags != null
@@ -254,7 +255,6 @@
 							text = text.replace(RegExp('@' + tag, 'gi'),'<span class="tag">@' + name + '</span>');
 					});
 				}
-				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html(text).prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
 			};
 		</script>
