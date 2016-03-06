@@ -248,7 +248,11 @@
 				if (e.keyCode == 13) {
 					var text = $('#messageInput').val(),
 						d = new Date(),
-						time = d.getUTCHours() + ':' + d.getUTCMinutes();
+						hrs = d.getUTCHours(),
+						mins = hrs = d.getUTCMinutes(),
+						hours = hrs < 10 ? (hrs == 0 ? '00' : '0' + hrs) : hrs,
+						minutes = mins < 10 ? (mins == 0 ? '00' : '0' + mins) : mins,
+						time = hours + ':' + minutes;
 					if (typeof name === 'undefined'
 							|| /^\s*$/.test(name)) {
 						send('', 'ERROR: You are not logged in!');
