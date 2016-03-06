@@ -251,18 +251,19 @@
 						send('', 'ERROR: You are not logged in!');
 						return;
 					}
-					var text = $('#messageInput').val();
-					var time = new Date().getUTCHours();
-					myMessageRef.push({name: name, text: text, time});
+					var text = $('#messageInput').val(),
+						d = new Date(),
+						time = d.getUTCHours() + ':' + d.getUTCMinutes();
+					myMessageRef.push({name: name, text: text, time: time});
 					$('#messageInput').val('');
 				}
 			});
 			myMessageRef.on('child_added', function(snapshot) {
-				var time = new Date().getUTCHours();
-				var message = snapshot.val();
+				var message = snapshot.val(),
+					time = message.time;
 				send(message.name, message.text, time);
 			});
-			function send(nick, text) {
+			function send(nick, text, time) {
 				var tags = text.getTags();
 				if (typeof text != 'undefined'
 						&& tags != null
@@ -284,7 +285,9 @@
 							text = text.replace(RegExp('@' + tag, 'gi'),'<span class="tag">@' + name + '</span>');
 					});
 				}
-				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html('<span>' + text + '</span><div class="timestamp">' + time + '</div>').prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
+				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html('<span>' + text + '</span>' 
+						+ (typeof time === 'string' ? '<div class="timestamp">' + time + '</div>' : '') )
+					.prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
 			};
 		</script>
