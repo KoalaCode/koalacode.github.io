@@ -55,6 +55,28 @@
 				}
 		var name = '';
 
+		function selectTags() {
+			$('.messages > div > span').each(function() {
+				var text = $(this).html(),
+					re = /https?:\/\/(www\.)?[^\s]+\.[^\s]+\/[^\s]+\.(?:png|jpg|jpeg|gif|tiff)/gi,
+					r,index,found;
+				while ( (r = re.exec(text)) ) {
+					index = r.index, found = r[0];
+					text = text.substring(0, index)
+						+ '<img src="' + r[0] + '">'
+						+ text.substring(index + r[0].length, text.length);
+				}
+				if (tags) {
+					tags.map(function(tag) {
+						if (typeof text != 'undefined'
+								&& tag == name.toLowerCase())
+							text = text.replace(RegExp('@' + tag, 'gi'),'<span class="tag">@' + name + '</span>');
+					});
+				}
+				$(this).html(text);
+			});
+		}
+
 		ref = new Firebase('https://nexdon.firebaseio.com/');
 		myUser = -1;
 
@@ -84,6 +106,7 @@
 							name = values[user.id].name;
 					}, function (errorObject) {
 						console.log("!! The read failed: " + errorObject.code);
+						return;
 					});
 					$('#register').fadeOut(0);
 					$('#lro').fadeOut(0);
@@ -92,6 +115,8 @@
 					$('#lout').fadeIn(0);
 					$('#name').fadeIn(0);
 					$('#name').html('Logged in: ' + name);
+
+					selectTags();
 				}
 			});
 		});
@@ -113,6 +138,7 @@
 			$('#lout').fadeIn(0);
 			$('#name').fadeIn(0);
 			$('#name').html('Logged in: ' + name);
+			selectTags();
 		});
 		$('#regcancel').click(function(){
 			$('#lro').fadeOut(0);
@@ -254,7 +280,7 @@
 							text = text.replace(RegExp('@' + tag, 'gi'),'<span class="tag">@' + name + '</span>');
 					});
 				}
-				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html(text).prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
+				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html('<span>' + text + '</span>').prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
 			};
 		</script>
