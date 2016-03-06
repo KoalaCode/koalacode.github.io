@@ -47,35 +47,6 @@
 			<source src="./ping.mp3">
 		</audio>
 		<script>
-			function send(nick, text, time) {
-				var tags = text.getTags();
-				if (typeof text != 'undefined'
-						&& tags != null
-						&& tags.indexOf(name.toLowerCase()) > -1)
-					pingSound.play();
-				text = text.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/&/g,'&amp;');
-				var re = /https?:\/\/(www\.)?[^\s]+\.[^\s]+\/[^\s]+\.(?:png|jpg|jpeg|gif|tiff)/gi,
-					r,index,found;
-				while ( (r = re.exec(text)) ) {
-					index = r.index, found = r[0];
-					text = text.substring(0, index)
-						+ '<img src="' + r[0] + '">'
-						+ text.substring(index + r[0].length, text.length);
-				}
-				if (tags) {
-					tags.map(function(tag) {
-						if (typeof text != 'undefined'
-								&& tag == name.toLowerCase())
-							text = text.replace(RegExp('@' + tag, 'gi'),'<span class="tag">@' + name + '</span>');
-					});
-				}
-				$('<div'+nick==name ? ' class="me"' : '')+'/>').html('<span>' + text + '</span>' 
-						+ (typeof time === 'string' ? '<div class="timestamp">' + time + '</div>' : '') )
-					.prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
-				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
-			};
-		</script>
-		<script>
 		if (typeof String.prototype.getTags != 'function')
 				String.prototype.getTags = function () {
 					var tgs = this.match(/@[a-zA-Z0-9]+/g);
@@ -299,6 +270,33 @@
 					time = message.time;
 				send(message.name, message.text, time);
 			});
+			function send(nick, text, time) {
+				var tags = text.getTags();
+				if (typeof text != 'undefined'
+						&& tags != null
+						&& tags.indexOf(name.toLowerCase()) > -1)
+					pingSound.play();
+				text = text.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/&/g,'&amp;');
+				var re = /https?:\/\/(www\.)?[^\s]+\.[^\s]+\/[^\s]+\.(?:png|jpg|jpeg|gif|tiff)/gi,
+					r,index,found;
+				while ( (r = re.exec(text)) ) {
+					index = r.index, found = r[0];
+					text = text.substring(0, index)
+						+ '<img src="' + r[0] + '">'
+						+ text.substring(index + r[0].length, text.length);
+				}
+				if (tags) {
+					tags.map(function(tag) {
+						if (typeof text != 'undefined'
+								&& tag == name.toLowerCase())
+							text = text.replace(RegExp('@' + tag, 'gi'),'<span class="tag">@' + name + '</span>');
+					});
+				}
+				$('<div'+nick==name ? ' class="me"' : '')+'/>').html('<span>' + text + '</span>' 
+						+ (typeof time === 'string' ? '<div class="timestamp">' + time + '</div>' : '') )
+					.prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
+				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+			};
 		</script>
 	</body>
 </html>
