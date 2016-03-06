@@ -251,6 +251,9 @@
 						send('', 'ERROR: You are not logged in!');
 						return;
 					}
+					else if (text == 0) {
+						return;
+					}
 					var text = $('#messageInput').val(),
 						d = new Date(),
 						time = d.getUTCHours() + ':' + d.getUTCMinutes();
