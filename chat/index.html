@@ -215,7 +215,7 @@
 					$('#name').fadeOut(0);
 					authClient.logout();
 			});
-			var myMessageRef = new Firebase('https://nexdon.firebaseio.com/messages/');
+			var myMessageRef = new Firebase('https://nexdon.firebaseio.com/messages');
 			$('#messageInput').keypress(function (e) {
 				if (e.keyCode == 13) {
 					if (typeof name === 'undefined'
