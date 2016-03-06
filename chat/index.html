@@ -272,6 +272,9 @@
 			});
 			function send(nick, text, time) {
 				var tags = text.getTags();
+				$('<div'+nick==name ? ' class="me"' : '')+'/>').html('<span>' + text + '</span>' 
+						+ (typeof time === 'string' ? '<div class="timestamp">' + time + '</div>' : '') )
+					.prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				if (typeof text != 'undefined'
 						&& tags != null
 						&& tags.indexOf(name.toLowerCase()) > -1)
@@ -292,9 +295,6 @@
 							text = text.replace(RegExp('@' + tag, 'gi'),'<span class="tag">@' + name + '</span>');
 					});
 				}
-				$('<div'+ setInterval(function(){(nick==name ? ' class="me"' : ''},50))+'/>').html('<span>' + text + '</span>' 
-						+ (typeof time === 'string' ? '<div class="timestamp">' + time + '</div>' : '') )
-					.prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
 			};
 		</script>
