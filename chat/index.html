@@ -290,9 +290,9 @@
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
 			};var authData = ref.getAuth();
 if (authData) {
-  console.log("User " + authData.uid + " is logged in with " + authData.provider);
+  document.getElementById("ypro").style.display = "block";
 } else {
-  console.log("User is logged out");
+  document.getElementById("ypro").style.display = "none";
 }
 		</script>
 	</body>
