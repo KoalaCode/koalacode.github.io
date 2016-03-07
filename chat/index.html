@@ -288,7 +288,12 @@
 						+ (typeof time === 'string' ? '<div class="timestamp">' + time + '</div>' : '') )
 					.prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
-			};
+			};var authData = ref.getAuth();
+if (authData) {
+  console.log("User " + authData.uid + " is logged in with " + authData.provider);
+} else {
+  console.log("User is logged out");
+}
 		</script>
 	</body>
 </html>
