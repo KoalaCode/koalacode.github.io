@@ -211,3 +211,21 @@ header .title {
 	background-color: red;
 	left: 0;
 }
+
+	form {
+		width: 60%;
+		margin: 0 auto;
+		padding-top: 200px;
+	}
+	form input {
+		display:block;
+		border: 1px solid black;
+		padding: 15px;
+		font-family: arial;
+		font-size: 16px;
+		font-weight: normal;
+	}
+	form textarea {
+		border: 1px solid black;
+	}
+
