@@ -247,7 +247,7 @@
 						time = hours + ':' + minutes;
 					if (typeof name === 'undefined'
 							|| /^\s*$/.test(name)) {
-						send('', 'ERROR: You are not logged in!');
+						send('', 'ERROR: You need to log in!!!');
 						return;
 					}
 					else if (text == 0) {
@@ -286,7 +286,7 @@
 				}
 				$('<div'+(nick==name ? ' class="me"' : '')+'/>').html('<span>' + text + '</span>' 
 						+ (typeof time === 'string' ? '<div class="timestamp">' + time + '</div>' : '') )
-					.prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
+					.prepend($('<b/>').text('[' + nick + '] ')).appendTo($('#messagesDiv'));
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
 			};
 			var authData = ref.getAuth();
