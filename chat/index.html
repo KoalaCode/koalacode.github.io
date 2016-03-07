@@ -159,6 +159,8 @@
 			}
 			if (user) {
 				// User is already logged in.
+				document.getElementById("ypro").style.display = "block";
+				
 				console.log(user);
 				console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
 			ref.child("users").on("value", function(snapshot) {
@@ -289,12 +291,7 @@
 					.prepend($('<b/>').text('[' + nick + '] ')).appendTo($('#messagesDiv'));
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
 			};
-			var authData = ref.getAuth();
-			if (authData) {
-			  document.getElementById("ypro").style.display = "block";
-			} else {
-			  document.getElementById("ypro").style.display = "none";
-			}
+
 		</script>
 	</body>
 </html>
