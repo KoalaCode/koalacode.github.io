@@ -288,12 +288,13 @@
 						+ (typeof time === 'string' ? '<div class="timestamp">' + time + '</div>' : '') )
 					.prepend($('<b/>').text('[' + nick + ']: ')).appendTo($('#messagesDiv'));
 				$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
-			};var authData = ref.getAuth();
-if (authData) {
-  document.getElementById("ypro").style.display = "block";
-} else {
-  document.getElementById("ypro").style.display = "none";
-}
+			};
+			var authData = ref.getAuth();
+			if (authData) {
+			  document.getElementById("ypro").style.display = "block";
+			} else {
+			  document.getElementById("ypro").style.display = "none";
+			}
 		</script>
 	</body>
 </html>
