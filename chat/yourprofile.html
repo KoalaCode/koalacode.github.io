@@ -1,0 +1,38 @@
+<html>  
+	<head>
+		<title>Dark Koala Knights</title>
+		<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+		<script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
+		<link rel='stylesheet' type='text/css' href='./css/main.css'>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css">
+	</head>
+	<body>
+		<header>
+			<div class="title">Dark Koala Knights</div>
+			<div class="topbtn" id="lout" style="display: none;">Logout</div>
+			<div class="name" id="name" style="display: none;"></div>
+			<a href="#" class="topbtn" id="ypro" style="display: none;">Your Profile</a>
+			<div class="topbtn" id="reg" style="display: block;">Register</div>
+			<div class="topbtn" id="log" style="display: block;">Login</div>
+		</header>
+		<form action="" method="post">
+		  First Name: <br> <input type="text" name="fname" value="">
+		  Last Name: <br> <input type="text" name="lname" value="">
+		  Email: <br> <input type="text" name="email" value="">
+		  Password: <br> <input type="password" name="password" value="">
+		</form>
+		<div class="footer">
+			<button class="nbtn" id="nick">Settings</button>
+		<div class="overlay" style="display: none" id="settings"><div class="settings"><h3>Settings</h3><input type='text' id='nameInput' placeholder='Name'><button id="change">Save</button></div></div>
+		<input type='text' id='messageInput' placeholder='Press enter to send a message' class="msg">
+		</div>
+		<audio id="pingSound">
+			<source src="./ping.mp3">
+		</audio>
+		<script>
+			ref = new Firebase('https://nexdon.firebaseio.com/');
+    </script>
+	</body>
+</html>
