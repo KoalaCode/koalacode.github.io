@@ -217,7 +217,7 @@ header .title {
 		margin: 0 auto;
 		padding-top: 200px;
 	}
-	form input {
+	form input[type=text], form input[type=password] {
 		display:block;
 		border: 1px solid black;
 		padding: 15px;
@@ -228,4 +228,20 @@ header .title {
 	form textarea {
 		border: 1px solid black;
 	}
+	
+	form input[type=submit] {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Georgia;
+  color: #183a70;
+  font-size: 12px;
+  padding: 10px 20px 10px 20px;
+  border: solid #37455c 1px;
+  text-decoration: none;
+}
+
+form input[type=submit]:hover {
+  text-decoration: none;
+}
 
